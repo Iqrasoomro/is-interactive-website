@@ -1,0 +1,22 @@
+:root { color-scheme: light; }
+.policy-body { color-scheme: light; --policy-ink: #142433; --policy-muted: #5c6d7b; --policy-line: #d9e2e8; background: #f4f7f9; color: var(--policy-ink); }
+.policy-header { background: #fff; border-bottom: 1px solid var(--policy-line); }
+.policy-nav { min-height: 75px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.policy-brand .brand-mark { color: #123047; border-color: #9bb8c8; }.policy-brand .brand-name { color: #142433; }
+.back-link { font-size: 12px; color: var(--policy-muted); transition: color .18s ease; }.back-link:hover { color: #1c6a90; }
+.policy-layout { display: grid; grid-template-columns: 265px minmax(0, 740px); justify-content: space-between; align-items: start; gap: 64px; padding-top: 66px; padding-bottom: 90px; }
+.policy-aside { position: sticky; top: 110px; }
+.policy-eyebrow { margin: 0 0 18px; color: #52758b; font-size: 10px; font-weight: 750; letter-spacing: .15em; }
+.policy-aside h1 { margin: 0 0 20px; font-size: clamp(2.9rem, 5vw, 4.5rem); font-weight: 650; line-height: .98; letter-spacing: -.075em; }.policy-aside h1 span { color: #4e9dc3; }
+.policy-meta { color: var(--policy-muted); font-size: 12px; line-height: 1.9; }
+.review-note { display: flex; align-items: flex-start; gap: 10px; margin-top: 26px; padding: 13px; border: 1px solid #c9dce6; border-radius: 5px; background: #eaf3f7; }.review-icon { display: grid; place-items: center; flex: 0 0 auto; width: 19px; height: 19px; border-radius: 50%; color: #fff; background: #3c7795; font-size: 12px; font-weight: 800; }.review-note p { margin: 0; color: #526675; font-size: 10px; line-height: 1.65; }.review-note strong { color: #233f50; font-size: 11px; }
+.policy-contact { display: flex; justify-content: space-between; gap: 12px; margin-top: 28px; padding-bottom: 8px; border-bottom: 1px solid #bdd0dc; color: #286e90; font-size: 12px; font-weight: 650; }
+.policy-content { padding: 36px 38px; border: 1px solid #e0e7ec; border-radius: 6px; background: #fff; box-shadow: 0 7px 32px rgba(18, 48, 67, .035); }
+.policy-intro { margin: 0 0 33px; color: #3b4f5d; font-size: 15px; line-height: 1.9; }.policy-content strong { color: #152d3c; font-weight: 700; }
+.policy-content section { padding: 25px 0; border-top: 1px solid #e6ecef; }.policy-content h2 { margin: 0 0 13px; font-size: 19px; font-weight: 650; line-height: 1.35; letter-spacing: -.04em; }.policy-content p, .policy-content li { color: #4d5f6c; font-size: 12px; line-height: 1.9; }.policy-content p { margin: 0 0 12px; }.policy-content section p:last-child { margin-bottom: 0; }.policy-content ul { margin: 10px 0 0; padding-left: 19px; }.policy-content li { margin-bottom: 11px; padding-left: 3px; }.policy-content li:last-child { margin-bottom: 0; }
+.policy-content a { color: #216d91; text-decoration: underline; text-decoration-color: #b1d0df; text-underline-offset: 3px; }.policy-content a:hover { text-decoration-color: #216d91; }
+.policy-email { display: inline-flex; align-items: center; gap: 8px; padding: 10px 0; font-size: 13px; font-weight: 700; }.policy-disclaimer { margin: 22px 0 0 !important; padding: 14px; border-left: 3px solid #679bb4; background: #eff5f8; color: #5c6d7b !important; font-size: 11px !important; }
+.policy-footer { border-top: 1px solid var(--policy-line); background: #fff; }.policy-footer .container { min-height: 65px; display: flex; align-items: center; justify-content: space-between; gap: 16px; color: #687985; font-size: 10px; }.policy-footer a { color: #426b82; }
+.policy-skip { color: var(--policy-ink); background: #d4ebf5; }
+@media (max-width: 850px) { .policy-layout { grid-template-columns: 1fr; gap: 28px; padding-top: 44px; }.policy-aside { position: static; }.policy-aside h1 { font-size: 3.6rem; }.policy-aside .review-note { max-width: 500px; }.policy-contact { max-width: 320px; }.policy-content { padding: 28px; } }
+@media (max-width: 540px) { .policy-nav { min-height: 68px; }.back-link { font-size: 11px; }.policy-layout { padding-top: 34px; padding-bottom: 55px; }.policy-aside h1 { font-size: 3.3rem; }.policy-content { padding: 22px 19px; }.policy-intro { font-size: 14px; }.policy-content h2 { font-size: 18px; }.policy-content p, .policy-content li { font-size: 12px; }.policy-footer .container { flex-wrap: wrap; padding-top: 15px; padding-bottom: 15px; } }

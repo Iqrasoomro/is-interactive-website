@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#09131e">
+  <meta name="description" content="IS Interactive is an independent game development studio creating original games and memorable interactive experiences. Meet Polar Mills, our Arctic take on Nine Men's Morris.">
+  <title>IS Interactive — Creating Worlds. Inspiring Play.</title>
+  <link rel="icon" href="assets/mark.svg" type="image/svg+xml">
+  <style>
+:root {
+  color-scheme: dark;
+  --bg: #09131e;
+  --bg-alt: #0d1a27;
+  --panel: #101f2d;
+  --panel-soft: #132536;
+  --line: rgba(185, 219, 237, .16);
+  --text: #f3f7fb;
+  --muted: #a8bac8;
+  --muted-dim: #718595;
+  --ice: #a9d9ee;
+  --ice-strong: #c7ecf8;
+  --ink: #0a1925;
+  --max: 1160px;
+  --radius: 8px;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+body { margin: 0; background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.65; }
+a { color: inherit; text-decoration: none; }
+button, a { -webkit-tap-highlight-color: transparent; }
+button, input { font: inherit; }
+::selection { background: rgba(169,217,238,.25); color: #fff; }
+.container { width: min(var(--max), calc(100% - 64px)); margin-inline: auto; }
+.skip-link { position: absolute; z-index: 50; top: -60px; left: 20px; padding: 10px 14px; background: var(--ice); color: var(--ink); border-radius: 5px; }
+.skip-link:focus { top: 12px; }
+.site-header { position: sticky; top: 0; z-index: 20; border-bottom: 1px solid var(--line); background: rgba(9,19,30,.94); backdrop-filter: blur(12px); }
+.nav-wrap { min-height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 32px; }
+.brand { display: inline-flex; align-items: center; gap: 12px; flex-shrink: 0; }
+.brand-mark { display: grid; place-items: center; width: 36px; height: 36px; border: 1px solid rgba(169,217,238,.7); border-radius: 5px; color: var(--ice-strong); font-size: 13px; font-weight: 750; letter-spacing: -.07em; }
+.brand-name { font-size: 14px; font-weight: 650; letter-spacing: -.02em; }
+.primary-nav { display: flex; align-items: center; gap: 34px; }
+.primary-nav a, .footer-nav a { color: var(--muted); font-size: 13px; transition: color .18s ease; }
+.primary-nav a:hover, .footer-nav a:hover { color: var(--ice-strong); }
+.menu-toggle { display: none; width: 42px; height: 42px; padding: 12px 9px; border: 1px solid var(--line); border-radius: 5px; background: transparent; cursor: pointer; }
+.menu-toggle span { display: block; height: 1px; background: var(--text); margin: 5px 0; transition: transform .2s ease; }
+.hero { position: relative; min-height: 625px; padding-top: 105px; padding-bottom: 90px; display: grid; grid-template-columns: 1.1fr .9fr; align-items: center; gap: 52px; }
+.hero-copy { max-width: 600px; position: relative; z-index: 2; }
+.eyebrow { margin: 0 0 20px; color: var(--muted); font-size: 10px; font-weight: 650; letter-spacing: .17em; line-height: 1.6; }
+.eyebrow-line { display: inline-block; vertical-align: 3px; width: 28px; height: 1px; margin-right: 9px; background: var(--ice); }
+h1, h2, h3, p { margin-top: 0; }
+.hero h1 { margin: 0; font-size: clamp(4.5rem, 7.7vw, 7.2rem); line-height: .92; letter-spacing: -.085em; font-weight: 650; }
+.hero h1 span { color: var(--ice); }
+.hero-tagline { margin: 28px 0 13px; font-size: clamp(1.15rem, 2.1vw, 1.5rem); font-weight: 500; letter-spacing: -.035em; }
+.hero-description { max-width: 430px; color: var(--muted); font-size: 15px; line-height: 1.8; margin-bottom: 28px; }
+.button { display: inline-flex; align-items: center; justify-content: center; gap: 18px; min-height: 48px; padding: 0 18px; border: 1px solid transparent; border-radius: 4px; font-size: 12px; font-weight: 650; transition: background .18s ease, border-color .18s ease, transform .18s ease; }
+.button-primary { background: var(--ice); color: var(--ink); }
+.button-primary:hover { background: var(--ice-strong); transform: translateY(-1px); }
+.hero-signature { position: relative; width: min(100%, 420px); aspect-ratio: 1/1; justify-self: end; display: flex; flex-direction: column; justify-content: space-between; padding: 22px; border: 1px solid var(--line); border-radius: 7px; background: linear-gradient(145deg, rgba(18,39,55,.75), rgba(9,19,30,.38)); overflow: hidden; }
+.hero-signature::before { content: ""; position: absolute; width: 270px; height: 270px; right: -110px; top: -90px; border: 1px solid rgba(169,217,238,.12); border-radius: 50%; }
+.signature-top, .signature-bottom, .art-topline { display: flex; justify-content: space-between; gap: 16px; color: var(--muted-dim); font-size: 9px; letter-spacing: .14em; font-weight: 650; }
+.signature-art { position: relative; width: 100%; max-width: 285px; aspect-ratio: 1; margin: auto; display: grid; place-items: center; }
+.orbit { position: absolute; border: 1px solid rgba(169,217,238,.24); border-radius: 50%; }
+.orbit-one { inset: 3%; }
+.orbit-two { inset: 16%; border-style: dashed; border-color: rgba(169,217,238,.17); }
+.signature-core { font-size: clamp(5.5rem, 10vw, 8rem); font-weight: 600; letter-spacing: -.12em; padding-right: .12em; color: #d7f0f9; line-height: 1; }
+.signature-core span { color: var(--ice); }
+.orbit-dot { position: absolute; width: 8px; height: 8px; border-radius: 50%; background: var(--ice); box-shadow: 0 0 0 6px rgba(169,217,238,.08); }
+.dot-one { top: 13%; right: 22%; }.dot-two { bottom: 18%; left: 4%; }
+.hero-foot { position: absolute; left: 0; right: 0; bottom: 30px; padding-top: 17px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; gap: 20px; color: var(--muted-dim); font-size: 9px; letter-spacing: .15em; font-weight: 650; }
+.hero-foot a { color: var(--muted); transition: color .18s ease; }.hero-foot a:hover { color: var(--ice); }
+.section { padding: 100px 0; border-top: 1px solid var(--line); }
+.games-section { background: #0b1723; }
+.section-heading { display: flex; justify-content: space-between; align-items: end; gap: 32px; margin-bottom: 42px; }
+.section-index { display: inline-grid; place-items: center; width: 24px; height: 24px; margin-right: 9px; border: 1px solid rgba(169,217,238,.38); border-radius: 3px; color: var(--ice); font-size: 9px; letter-spacing: 0; }
+h2 { margin-bottom: 0; font-size: clamp(2.45rem, 4.7vw, 4rem); line-height: 1.03; font-weight: 600; letter-spacing: -.07em; }
+.heading-period { color: var(--ice); }
+.section-intro { max-width: 280px; margin: 0 0 5px; color: var(--muted); font-size: 13px; line-height: 1.75; }
+.game-card { display: grid; grid-template-columns: .93fr 1.07fr; min-height: 540px; overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel); }
+.game-card-copy { padding: clamp(28px, 4vw, 48px); display: flex; align-items: flex-start; flex-direction: column; }
+.game-kicker { width: 100%; display: flex; align-items: center; gap: 9px; color: var(--muted); font-size: 9px; font-weight: 700; letter-spacing: .13em; }
+.status-dot { width: 6px; height: 6px; background: var(--ice); border-radius: 50%; }
+.game-number { margin-left: auto; color: var(--muted-dim); font-weight: 550; }
+.game-card h3 { margin: 32px 0 4px; font-size: clamp(2.6rem, 4.2vw, 3.85rem); line-height: 1; letter-spacing: -.07em; font-weight: 600; }
+.game-subtitle { color: var(--ice); font-size: 13px; margin: 9px 0 18px; }
+.game-description { margin-bottom: 22px; max-width: 440px; color: var(--muted); font-size: 13px; line-height: 1.8; }
+.feature-list { margin: 0 0 29px; padding: 0; list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 10px 17px; width: 100%; }
+.feature-list li { position: relative; padding-left: 14px; color: #d8e2e9; font-size: 11px; line-height: 1.55; }
+.feature-list li::before { content: ""; position: absolute; top: .65em; left: 0; width: 5px; height: 5px; border: 1px solid var(--ice); border-radius: 50%; }
+.game-card-actions { margin-top: auto; display: flex; align-items: center; flex-wrap: wrap; gap: 18px; width: 100%; }
+.button-coming { min-height: 45px; color: #9fb0bd; background: rgba(255,255,255,.025); border-color: var(--line); gap: 14px; cursor: default; }
+.engine-note { display: inline-flex; align-items: center; gap: 8px; color: var(--muted-dim); font-size: 8px; letter-spacing: .1em; font-weight: 700; }
+.engine-mark { display: inline-grid; place-items: center; width: 18px; height: 18px; background: #29485d; border-radius: 3px; color: #e9f7fc; font-size: 11px; font-style: italic; }
+.game-art { position: relative; min-height: 540px; overflow: hidden; padding: 22px; display: flex; flex-direction: column; justify-content: space-between; background: #122a3a; border-left: 1px solid var(--line); }
+.game-art::before { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse at 48% 36%, rgba(139,185,208,.17), transparent 62%); pointer-events: none; }
+.art-topline { position: relative; z-index: 1; color: rgba(218,241,250,.6); }
+.board-illustration { position: relative; z-index: 1; display: block; width: 100%; max-width: 580px; max-height: 445px; margin: 10px auto; }
+.art-note { position: relative; z-index: 2; display: flex; align-items: center; gap: 11px; padding: 11px 13px; background: rgba(6,19,29,.72); border: 1px solid rgba(190,225,240,.16); border-radius: 4px; backdrop-filter: blur(6px); }
+.placeholder-icon { display: grid; place-items: center; flex-shrink: 0; width: 29px; height: 29px; border: 1px dashed rgba(169,217,238,.55); border-radius: 3px; color: var(--ice); font-size: 19px; }
+.art-note strong, .art-note small { display: block; }.art-note strong { font-size: 11px; font-weight: 600; }.art-note small { margin-top: 1px; color: var(--muted); font-size: 10px; }
+.future-note { display: flex; justify-content: space-between; gap: 22px; margin: 22px 0 0; padding: 19px 0 0; border-top: 1px solid var(--line); color: var(--muted-dim); font-size: 10px; }.future-note span:first-child { color: var(--ice); letter-spacing: .12em; font-weight: 700; }
+.about-section { background: var(--bg); }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; }
+.about-copy { padding-top: 32px; max-width: 510px; }
+.about-lead { margin: 0 0 22px; font-size: clamp(1.75rem, 3.4vw, 2.65rem); line-height: 1.2; letter-spacing: -.06em; font-weight: 550; }
+.about-lead span { color: var(--ice); }
+.about-copy > p:not(.about-lead) { color: var(--muted); max-width: 470px; font-size: 14px; line-height: 1.9; }
+.about-rule { width: 100%; height: 1px; margin: 40px 0 14px; background: var(--line); }
+.about-meta { display: flex; justify-content: space-between; gap: 15px; color: var(--muted-dim); font-size: 9px; letter-spacing: .1em; }
+.contact-section { background: #0b1723; }
+.contact-panel { display: grid; grid-template-columns: 1fr .72fr; align-items: end; gap: 50px; padding: clamp(30px, 5.5vw, 65px); border: 1px solid var(--line); background: var(--panel); border-radius: var(--radius); }
+.contact-panel h2 { max-width: 570px; }
+.contact-copy { max-width: 380px; margin: 20px 0 0; color: var(--muted); font-size: 13px; }
+.contact-action { display: flex; align-items: flex-start; flex-direction: column; gap: 17px; }
+.email-address { display: inline-block; color: var(--ice); font-size: clamp(1rem, 1.6vw, 1.25rem); letter-spacing: -.02em; word-break: break-word; }.email-address span { padding-left: 6px; }
+.site-footer { border-top: 1px solid var(--line); padding: 31px 0 22px; }
+.footer-main { display: grid; grid-template-columns: 1fr 1fr auto; align-items: center; gap: 24px; padding-bottom: 27px; }
+.footer-brand { width: fit-content; }.footer-brand .brand-mark { width: 31px; height: 31px; }.footer-tagline { color: var(--muted); font-size: 11px; }
+.footer-nav { display: flex; gap: 20px; align-items: center; }
+.footer-nav a { font-size: 11px; white-space: nowrap; }
+.footer-bottom { display: flex; justify-content: space-between; gap: 18px; padding-top: 18px; border-top: 1px solid var(--line); color: var(--muted-dim); font-size: 9px; }
+/* Content must remain visible even when JavaScript or IntersectionObserver is unavailable. */
+.reveal,
+.js-motion .reveal,
+.js-motion .reveal.is-visible { opacity: 1; transform: none; }
+.reveal { transition: opacity .25s ease, transform .25s ease; }
+@media (max-width: 900px) {
+  .hero { min-height: 570px; grid-template-columns: 1.05fr .95fr; gap: 28px; padding-top: 86px; }
+  .hero-signature { padding: 16px; }
+  .game-card { grid-template-columns: 1fr; }
+  .game-card-copy { min-height: auto; }
+  .game-art { min-height: 460px; border-left: 0; border-top: 1px solid var(--line); }
+  .board-illustration { max-height: 390px; }
+  .about-grid { gap: 40px; }
+  .footer-main { grid-template-columns: 1fr 1fr; }
+  .footer-nav { grid-column: 1 / -1; }
+}
+@media (max-width: 640px) {
+  .container { width: min(var(--max), calc(100% - 40px)); }
+  .nav-wrap { min-height: 68px; }
+  .menu-toggle { display: block; }
+  .primary-nav { display: none; position: absolute; top: 67px; left: 0; right: 0; padding: 13px 20px 20px; background: var(--bg); border-bottom: 1px solid var(--line); flex-direction: column; align-items: stretch; gap: 0; }
+  .primary-nav.is-open { display: flex; }
+  .primary-nav a { padding: 12px 0; border-top: 1px solid var(--line); }
+  .menu-toggle[aria-expanded="true"] span:first-child { transform: translateY(3px) rotate(45deg); }
+  .menu-toggle[aria-expanded="true"] span:last-child { transform: translateY(-3px) rotate(-45deg); }
+  .hero { display: flex; flex-direction: column; align-items: stretch; gap: 36px; min-height: auto; padding-top: 73px; padding-bottom: 88px; }
+  .hero h1 { font-size: clamp(4.2rem, 17vw, 6rem); }
+  .hero-description { font-size: 14px; max-width: 410px; }
+  .hero-signature { width: min(100%, 340px); align-self: center; }
+  .signature-core { font-size: 6.2rem; }
+  .hero-foot { bottom: 23px; font-size: 8px; letter-spacing: .09em; }
+  .hero-foot span:first-child { max-width: 190px; }
+  .section { padding: 72px 0; }
+  .section-heading { align-items: flex-start; flex-direction: column; gap: 16px; margin-bottom: 28px; }
+  .section-intro { max-width: none; }
+  h2 { font-size: clamp(2.5rem, 11vw, 3.8rem); }
+  .game-card-copy { padding: 26px 22px 30px; }
+  .game-card h3 { margin-top: 27px; font-size: 3.15rem; }
+  .game-number { font-size: 8px; }
+  .feature-list { grid-template-columns: 1fr; gap: 9px; }
+  .game-card-actions { align-items: flex-start; flex-direction: column; gap: 12px; }
+  .game-art { min-height: 365px; padding: 14px; }
+  .art-topline { font-size: 8px; letter-spacing: .1em; }
+  .board-illustration { max-height: 300px; }
+  .art-note { padding: 9px; }
+  .future-note { flex-direction: column; gap: 6px; }
+  .about-grid { grid-template-columns: 1fr; gap: 22px; }
+  .about-copy { padding-top: 0; }
+  .about-meta { flex-direction: column; gap: 8px; }
+  .contact-panel { grid-template-columns: 1fr; gap: 34px; padding: 28px 22px; }
+  .contact-action { gap: 15px; }
+  .footer-main { grid-template-columns: 1fr; gap: 18px; }
+  .footer-tagline { margin-top: -9px; }
+  .footer-nav { grid-column: auto; flex-wrap: wrap; gap: 13px 20px; }
+  .footer-bottom { flex-direction: column; gap: 4px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+  .js-motion .reveal { opacity: 1; transform: none; }
+}
+
+  </style>
+  <script defer>
+(function () {
+  const toggle = document.querySelector('.menu-toggle');
+  const nav = document.querySelector('.primary-nav');
+
+  if (toggle && nav) {
+    toggle.addEventListener('click', function () {
+      const expanded = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!expanded));
+      toggle.setAttribute('aria-label', expanded ? 'Open navigation' : 'Close navigation');
+      nav.classList.toggle('is-open', !expanded);
+    });
+
+    nav.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.setAttribute('aria-label', 'Open navigation');
+        nav.classList.remove('is-open');
+      });
+    });
+  }
+
+})();
+
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header" id="home">
+    <div class="container nav-wrap">
+      <a class="brand" href="#home" aria-label="IS Interactive home">
+        <span class="brand-mark" aria-hidden="true">IS</span>
+        <span class="brand-name">IS Interactive</span>
+      </a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Open navigation">
+        <span></span><span></span>
+      </button>
+      <nav class="primary-nav" id="primary-nav" aria-label="Main navigation">
+        <a href="#home">Home</a>
+        <a href="#games">Games</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero container" aria-labelledby="hero-title">
+      <div class="hero-copy reveal">
+        <p class="eyebrow"><span class="eyebrow-line"></span> INDEPENDENT GAME DEVELOPMENT STUDIO</p>
+        <h1 id="hero-title">IS<br><span>Interactive</span></h1>
+        <p class="hero-tagline">Creating Worlds. Inspiring Play.</p>
+        <p class="hero-description">An independent game development studio creating original games and memorable interactive experiences.</p>
+        <a class="button button-primary" href="#games">Explore Our Games <span aria-hidden="true">↘</span></a>
+      </div>
+      <div class="hero-signature reveal" aria-label="IS Interactive studio mark">
+        <div class="signature-top"><span>IS INTERACTIVE</span><span>EST. 2026</span></div>
+        <div class="signature-art" aria-hidden="true">
+          <div class="orbit orbit-one"></div>
+          <div class="orbit orbit-two"></div>
+          <div class="signature-core">IS<span>.</span></div>
+          <span class="orbit-dot dot-one"></span><span class="orbit-dot dot-two"></span>
+        </div>
+        <div class="signature-bottom"><span>INDEPENDENT BY DESIGN</span><span>PAKISTAN</span></div>
+      </div>
+      <div class="hero-foot"><span>ORIGINAL GAMES · THOUGHTFUL DESIGN</span><a href="#games" aria-label="Scroll to our games">SCROLL TO EXPLORE <span aria-hidden="true">↓</span></a></div>
+    </section>
+
+    <section class="section games-section" id="games" aria-labelledby="games-title">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div><p class="eyebrow"><span class="section-index">01</span> THE PLAYGROUND</p><h2 id="games-title">Our Games<span class="heading-period">.</span></h2></div>
+          <p class="section-intro">Original ideas, made to be played.<br>More worlds are on the way.</p>
+        </div>
+
+        <article class="game-card reveal">
+          <div class="game-card-copy">
+            <div class="game-kicker"><span class="status-dot"></span> FIRST PROJECT <span class="game-number">GAME / 001</span></div>
+            <h3>Polar Mills</h3>
+            <p class="game-subtitle">Nine Men's Morris — Arctic Strategy</p>
+            <p class="game-description">Experience classic Nine Men's Morris in a charming Arctic world. Play with penguins and seals, form mills, plan your moves, and challenge your opponents.</p>
+            <ul class="feature-list">
+              <li>Classic Nine Men's Morris gameplay</li>
+              <li>Stylized Arctic environment</li>
+              <li>Penguins and seals</li>
+              <li>Play against the computer</li>
+              <li>Online multiplayer</li>
+              <li>Preset messages and reaction stickers</li>
+            </ul>
+            <div class="game-card-actions">
+              <span class="button button-coming" aria-disabled="true">Coming Soon on Google Play <span aria-hidden="true">↗</span></span>
+              <span class="engine-note"><span class="engine-mark">U</span> BUILT WITH UNREAL ENGINE 5</span>
+            </div>
+          </div>
+          <div class="game-art" aria-label="Polar Mills artwork placeholder">
+            <div class="art-topline"><span>POLAR MILLS</span><span>ARCTIC SERIES / 01</span></div>
+            <svg class="board-illustration" viewBox="0 0 620 510" role="img" aria-labelledby="board-title board-desc">
+              <title id="board-title">Polar Mills artwork placeholder</title>
+              <desc id="board-desc">A stylized icy Nine Men's Morris board with blue and pale pieces representing the game's penguins and seals.</desc>
+              <defs>
+                <linearGradient id="ice" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#d7eef7"/><stop offset="1" stop-color="#8bb9d0"/></linearGradient>
+                <linearGradient id="pieceBlue" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#163a50"/><stop offset="1" stop-color="#071723"/></linearGradient>
+                <linearGradient id="pieceWhite" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#b8d5e4"/></linearGradient>
+              </defs>
+              <g opacity=".16" stroke="#c9ebf7" stroke-width="1"><path d="M0 80H620M0 160H620M0 240H620M0 320H620M0 400H620M80 0V510M160 0V510M240 0V510M320 0V510M400 0V510M480 0V510M560 0V510"/></g>
+              <g transform="translate(110 34)" stroke="#d6f1fb" stroke-width="5" fill="none" stroke-linejoin="round">
+                <rect x="0" y="0" width="400" height="400" rx="1"/>
+                <rect x="67" y="67" width="266" height="266"/>
+                <rect x="133" y="133" width="134" height="134"/>
+                <path d="M200 0V133M200 267V400M0 200H133M267 200H400"/>
+              </g>
+              <g fill="url(#pieceBlue)" stroke="#a9deef" stroke-width="3">
+                <circle cx="110" cy="34" r="16"/><circle cx="310" cy="34" r="16"/><circle cx="510" cy="34" r="16"/><circle cx="177" cy="101" r="16"/><circle cx="443" cy="101" r="16"/><circle cx="110" cy="234" r="16"/><circle cx="310" cy="234" r="16"/>
+              </g>
+              <g fill="url(#pieceWhite)" stroke="#eaf8fd" stroke-width="3">
+                <circle cx="110" cy="434" r="16"/><circle cx="310" cy="434" r="16"/><circle cx="510" cy="434" r="16"/><circle cx="177" cy="367" r="16"/><circle cx="443" cy="367" r="16"/><circle cx="510" cy="234" r="16"/><circle cx="310" cy="167" r="16"/>
+              </g>
+              <g font-family="Inter, Arial, sans-serif" font-size="11" letter-spacing="3" fill="#e2f5fb" opacity=".7"><text x="24" y="484">PLAN YOUR NEXT MOVE</text><text x="596" y="484" text-anchor="end">THE ARCTIC BOARD</text></g>
+            </svg>
+            <div class="art-note"><span class="placeholder-icon" aria-hidden="true">＋</span><span><strong>Artwork placeholder</strong><small>Official Polar Mills artwork will be added here.</small></span></div>
+          </div>
+        </article>
+        <!-- Future game cards can be added by duplicating the article.game-card pattern and changing its content. -->
+        <p class="future-note reveal"><span>MORE IN DEVELOPMENT</span><span>New ideas are taking shape. Watch this space.</span></p>
+      </div>
+    </section>
+
+    <section class="section about-section" id="about" aria-labelledby="about-title">
+      <div class="container about-grid">
+        <div class="section-heading reveal">
+          <div><p class="eyebrow"><span class="section-index">02</span> OUR APPROACH</p><h2 id="about-title">About IS<br>Interactive<span class="heading-period">.</span></h2></div>
+        </div>
+        <div class="about-copy reveal">
+          <p class="about-lead">Small studio.<br><span>Big room to play.</span></p>
+          <p>IS Interactive is an independent game development studio focused on creating entertaining, thoughtful, and visually distinctive games. We believe great games combine creativity, engaging gameplay, and memorable experiences.</p>
+          <div class="about-rule"></div><div class="about-meta"><span>INDEPENDENT GAME DEVELOPMENT</span><span>UNREAL ENGINE 5</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section contact-section" id="contact" aria-labelledby="contact-title">
+      <div class="container contact-panel reveal">
+        <div><p class="eyebrow"><span class="section-index">03</span> SAY HELLO</p><h2 id="contact-title">Get in Touch<span class="heading-period">.</span></h2><p class="contact-copy">Have a question, suggestion, or need support? Feel free to contact us.</p></div>
+        <div class="contact-action"><a class="email-address" href="mailto:iqra818721@gmail.com">iqra818721@gmail.com <span aria-hidden="true">↗</span></a><a class="button button-primary" href="mailto:iqra818721@gmail.com">Email the Studio <span aria-hidden="true">↗</span></a></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-main">
+      <a class="brand footer-brand" href="#home"><span class="brand-mark" aria-hidden="true">IS</span><span class="brand-name">IS Interactive</span></a>
+      <div class="footer-tagline">Creating Worlds. Inspiring Play.</div>
+      <nav class="footer-nav" aria-label="Footer navigation"><a href="#home">Home</a><a href="#games">Games</a><a href="privacy/polar-mills/">Privacy Policy</a><a href="#contact">Contact</a></nav>
+    </div>
+    <div class="container footer-bottom"><span>© 2026 IS Interactive. All rights reserved.</span><span>Independent game development studio</span></div>
+  </footer>
+</body>
+</html>
